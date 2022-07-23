@@ -1,0 +1,202 @@
+#+title: Sonar
+#+name: Saksham
+#+date: <2022-07-23 Sat>
+#+PROPERTY: header-args :tangle ~/Documents/Developer/Clusterduck/sonar.py
+
+* Sonar
+A Program to calculate the distance from a thing based on how long it takes for the sound to reach you.
+
+The program is in 3 languages for the fun of it.
+
+** In Python
+#+begin_src python
+def expo_calc(time=0):
+    if time == 0:
+        return "The time was taken as 0.\nYou are dead, congrats."
+    elif time > 0:
+        return (f"The distance is between a {time*343} meter radius.")
+    else:
+        return "You are dead."
+#+end_src
+
+#+begin_src python
+def lit_calc(diff=0):
+    if diff == 0:
+        return "Youre in it, either watch or seek shelter"
+    if diff > 0:
+        return (f"You are {diff*343} meters from the storm. Good luck")
+    else:
+        return "Wut"
+#+end_src
+
+#+begin_src python
+def main():
+    print("Hi! Count the seconds btwn when you saw the light and the sound first. Or guess, no ones judging\n")
+    print("What do you want to calculate?\n1. Explosion\n2. Lightning\n3. Quit")
+    
+    chois = int(input("\nPick the num: "))
+    
+    if chois == 1:
+        explo_tim = float(input(
+            "What was the time diffrence between the cloud and the kaboom? "))
+        print(expo_calc(time=explo_tim))
+    elif chois == 2:
+        flash_thun_tim = float(
+            input("What was the time btwn flash and thunder? "))
+        print(lit_calc(diff=flash_thun_tim))
+    elif chois == 3:
+        print("Bye have a great time")
+    else:
+        print("Had to pick one of the options...")
+
+if __name__ == "__main__":
+    main()
+
+#+end_src
+
+** In C++
+#+begin_src cpp
+#include <iostream>
+
+using namespace std;
+
+void expoCalc(double time)
+{
+    if (time == 0)
+    {
+        cout << "The time was taken as 0.\nYou are dead, congrats." << endl;
+    } else if (time > 0)
+    {
+        cout << "The explosion was within a " << time * 343 << " meter radius." << endl;
+    } else
+    {
+        cout << "You are dead.";
+    }
+}
+#+end_src
+
+#+begin_src cpp
+void litCalc(double diff)
+{
+    if (diff == 0)
+    {
+
+        cout << "Youre in it, either watch or seek shelter" << endl;
+    }
+    else if (diff > 0)
+    {
+        cout << "You are" << diff * 343 << "meters from the storm. Good luck" << endl;
+    }
+    else
+    {
+        cout << "Wut";
+    }
+}
+#+end_src
+
+#+begin_src cpp
+int main()
+{
+    int chois;
+    cout << "Hi! Count the seconds btwn when you saw the light and the sound first. "
+    << "Or guess, no ones judging\n" << endl;
+    
+    cout << "What do you want to calculate?\n1. Explosion\n2. Lightning\n3. Quit" << endl;
+
+    cout << "Pick the num: ";
+    cin >> chois;
+
+    if (chois == 1)
+    {
+        double exploTim;
+        cout << "What was the time diffrence between the cloud and the kaboom? (in seconds) ";
+        cin >> exploTim;
+        expoCalc(exploTim);
+    }
+    else if (chois == 2)
+    {
+        double flashThunTim;
+        cout << "What was the time btwn flash and thunder?(in seconds) " << endl;
+        cin >> flashThunTim;
+        litCalc(flashThunTim);
+    }
+    else if (chois == 3)
+    {
+
+        cout << "Bye have a great time" << endl;
+    }
+    else
+    {
+        cout << "Had to pick one of the options..." << endl;
+    };
+    return 0;
+}
+#+end_src
+
+** In Rust
+Admittedly my first time writing something in rust from scratch.
+Experience: Complicated, but good
+#+begin_src rust
+use std::io;
+
+fn expo_calc(time: i32){
+    if time == 0 {
+        println!("The time was taken as 0.\nYou are dead, congrats.");
+    }
+    else if time > 0{
+        println!("The explosion was within a {} meter radius.",time*343);
+    }
+    else{
+        println!("You are dead.");
+    }
+}
+#+end_src
+
+#+begin_src rust
+fn lit_calc(diff: i32){
+    if diff == 0{
+
+        println!("Youre in it, either watch or seek shelter");
+    }
+    if diff > 0{
+
+        println!("You are {} meters from the storm. Good luck",diff*343);
+    }
+    else{
+
+        println!("Wut");
+    }
+}
+
+#+end_src
+
+#+begin_src rust
+fn main() {
+    println!("Hi! Count the seconds btwn when you saw the light and the sound first. Or guess, no ones judging\n");
+    println!("What do you want to calculate?\n1. Explosion\n2. Lightning\n3. Quit");
+
+    println!(":>");
+    let mut choice = String::new();
+          io::stdin().read_line(&mut choice).expect("Unable to read entered data");
+    let choice: i32 = choice.trim().parse().ok().expect("Program processes numbers only");
+
+
+    if choice == 1 {
+        println!("What was the time diffrence between the cloud and the kaboom?");
+        let mut explo_tim = String::new();
+        io::stdin().read_line(&mut explo_tim).expect("Unable to read entered data");
+        let explo_tim: i32 = explo_tim.trim().parse().ok().expect("Program processes numbers only");
+
+        expo_calc(explo_tim);
+    } else if choice == 2{
+        println!("What was the time btwn flash and thunder?");
+        let mut flash_thun_tim = String::new();
+        io::stdin().read_line(&mut flash_thun_tim).expect("Unable to read entered data");
+        let flash_thun_tim: i32 = flash_thun_tim.trim().parse().ok().expect("Program processes numbers only");
+
+        lit_calc(flash_thun_tim);
+    } else { println!("SOmething went wrong ☹️")}
+ 
+}
+#+end_src
+
