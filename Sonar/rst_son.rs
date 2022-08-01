@@ -1,5 +1,6 @@
 use std::io;
 
+
 fn expo_calc(time: i32){
     if time == 0 {
         println!("The time was taken as 0.\nYou are dead, congrats.");
@@ -27,6 +28,7 @@ fn main() {
     println!("What do you want to calculate?\n1. Explosion\n2. Lightning\n3. Quit");
 
     println!(":>");
+    
     let mut choice = String::new();
           io::stdin().read_line(&mut choice).expect("Unable to read entered data");
     let choice: i32 = choice.trim().parse().ok().expect("Program processes numbers only");
@@ -34,6 +36,7 @@ fn main() {
 
     if choice == 1 {
         println!("What was the time diffrence between the cloud and the kaboom?");
+        
         let mut explo_tim = String::new();
         io::stdin().read_line(&mut explo_tim).expect("Unable to read entered data");
         let explo_tim: i32 = explo_tim.trim().parse().ok().expect("Program processes numbers only");
@@ -41,6 +44,7 @@ fn main() {
         expo_calc(explo_tim);
     } else if choice == 2{
         println!("What was the time btwn flash and thunder?");
+        
         let mut flash_thun_tim = String::new();
         io::stdin().read_line(&mut flash_thun_tim).expect("Unable to read entered data");
         let flash_thun_tim: i32 = flash_thun_tim.trim().parse().ok().expect("Program processes numbers only");
